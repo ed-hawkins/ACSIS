@@ -15,7 +15,7 @@ fid=fopen('DATA/AMOC.txt','w+');
 for yy=first_year:last_year
     % find values from April one year to March the following year
     F=find((MOC_RAW(:,2)==yy & MOC_RAW(:,3)>=4)|(MOC_RAW(:,2)==(yy+1) & MOC_RAW(:,3)<=3));
-    if length(F)>=728 % twice per day, each day, allowing for one missing day
+    if length(F)>=728 & length(F)<=732 % twice per day, each day, allowing for one missing day
      AMOC(yy)=nanmean(MOC_RAW(F,end));
      fprintf(fid,'%d %.3f\n',yy,AMOC(yy));
     end
@@ -45,9 +45,9 @@ clearvars -except LY
 %%%% JET %%%%
 JETJJA(1:LY)=NaN;
 JETDJF(1:LY)=NaN;
-SS=ncread('JetDiags_ukext_seasmean_1950to2020.nc','u');
+SS=ncread('JET/JetDiags_ukext_seasmean_1950to2020.nc','u');
 SS=SS(3,:); % select row
-LL=ncread(sprintf('JetDiags_0to20W_centroidfromseasmean_1950to2020.nc'),'cen_lats_eastward_wind_');
+LL=ncread(sprintf('JET/JetDiags_0to20W_centroidfromseasmean_1950to2020.nc'),'cen_lats_eastward_wind_');
 LL=LL(3,:); % select row
 
 JETDJF(1951:2020)=SS(4:4:end);
