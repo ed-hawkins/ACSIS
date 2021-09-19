@@ -17,7 +17,7 @@ for yy=first_year:last_year
     F=find((MOC_RAW(:,2)==yy & MOC_RAW(:,3)>=4)|(MOC_RAW(:,2)==(yy+1) & MOC_RAW(:,3)<=3));
     if length(F)>=728 & length(F)<=732 % twice per day, each day, allowing for one missing day
      AMOC(yy)=nanmean(MOC_RAW(F,end));
-     fprintf(fid,'%d %.3f\n',yy,AMOC(yy));
+     fprintf(fid,'%.2f %.3f\n',yy+0.25,AMOC(yy));
     end
 end
 fclose(fid);
