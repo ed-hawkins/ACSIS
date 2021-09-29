@@ -18,9 +18,25 @@ for yy=first_year:last_year
     if length(F)>=728 & length(F)<=732 % twice per day, each day, allowing for one missing day
      AMOC(yy)=nanmean(MOC_RAW(F,end));
      fprintf(fid,'%.2f %.3f\n',yy+0.25,AMOC(yy));
+    else
+        disp(sprintf('%d %d',yy,length(F)));
+        AMOC2(yy)=nanmean(MOC_RAW(F,end));
     end
 end
 fclose(fid);
+
+clearvars -except LY
+%%% SPG
+SPG(1:LY)=NaN;
+SPGOHC=ncread('SPG-OHC/EN4_OHC_NA.nc','OHC_EN4_1000m_SPG');
+SPGOHCtime=ncread('SPG-OHC/EN4_OHC_NA.nc','time');
+first_year=1950;
+last_year=2020;
+fid=fopen('DATA/SPG-OHC.txt','w+');
+for yy=(first_year):last_year
+   SPG(yy)=mean(SPGOHC(12*(yy-first_year)+[1:12]))/1e21;
+   fprintf(fid,'%d %.3f\n',yy,SPG(yy));
+end
 
 clearvars -except LY
 %%%% NAO %%%%
@@ -63,9 +79,4 @@ for yy=1950:LY
    fprintf(fid,'%d %.3f\n',yy,JETDJF(yy));
 end
 fclose(fid);
-
-
-
-
-
 

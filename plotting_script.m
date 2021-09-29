@@ -1,7 +1,7 @@
 clear all
 close all
-dfiles={'AMOC','NAO','JET-JJA','JET-DJF'};
-vname={'AMOC [Sv]','NAO (DJFM)','Jet latitude (JJA) [°N]','Jet speed (DJF) [m/s]'};
+dfiles={'AMOC','NAO','JET-JJA','JET-DJF','SPG-OHC'};
+vname={'AMOC [Sv]','NAO (DJFM)','Jet latitude (JJA) [°N]','Jet speed (DJF) [m/s]','Sub-polar gyre OHC [ZJ]'};
 figure
 for dd=1:length(dfiles)
     D=load(sprintf('DATA/%s.txt',dfiles{dd}));
