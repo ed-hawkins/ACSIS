@@ -2,6 +2,15 @@ clear all
 close all
 LY=2020;
 
+%%% SEA ICE %%%
+SICE(1:LY)=NaN;
+SI=load('ARCTIC-SEA-ICE/OctNov-volume-CS2.dat');
+fid=fopen('DATA/ARCTIC-SEA-ICE.txt','w+');
+for yy=SI(1,1):SI(end,1)
+    F=find(SI(:,1)==yy);
+    fprintf(fid,'%.2f %.3f\n',yy,SI(F,2));
+end
+
 %%%% AMOC %%%%
 AMOC(1:LY)=NaN;
 MOC_RAW=load('AMOC/moc_transports.ascii.txt');
