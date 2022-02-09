@@ -7,7 +7,7 @@ for dd=1:length(dfiles)
     D=load(sprintf('DATA/%s.txt',dfiles{dd}));
     subaxis(length(dfiles),1,dd,'SV',0.05);
     plot(D(:,1),D(:,2),'LineWidth',2);
-    xlim([1949 2021]);
+    xlim([1949 2022]);
     TT=title(vname{dd},'FontWeight','normal');
     set(gca,'FontSize',14);
     set(TT,'FontSize',20);
@@ -15,4 +15,16 @@ end
 set(gcf,'PaperPosition',[0 0 25 8*length(dfiles)]);
 print('-dpng','-r600','ACSIS-indicators.png');
 
+close all
+for dd=1:length(dfiles)
+    figure
+    D=load(sprintf('DATA/%s.txt',dfiles{dd}));
+    plot(D(:,1),D(:,2),'LineWidth',2);
+    xlim([1949 2022]);
+    TT=title(vname{dd},'FontWeight','normal');
+    set(gca,'FontSize',14);
+    set(TT,'FontSize',20);
+set(gcf,'PaperPosition',[0 0 25 8]);
+print('-dpng','-r300',sprintf('ACSIS-indicators-%s.png',dfiles{dd}));
+end
 

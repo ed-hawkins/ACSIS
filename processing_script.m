@@ -1,10 +1,10 @@
 clear all
 close all
-LY=2020;
+LY=2021;
 
 %%% SEA ICE %%%
 SICE(1:LY)=NaN;
-SI=load('ARCTIC-SEA-ICE/OctNov-volume-CS2.dat');
+SI=load('ARCTIC-SEA-ICE/OctNov-volume-N30.dat');
 fid=fopen('DATA/ARCTIC-SEA-ICE.txt','w+');
 for yy=SI(1,1):SI(end,1)
     F=find(SI(:,1)==yy);
@@ -66,8 +66,9 @@ for yy=(first_year+1):min(last_year,LY)
 end
 fclose(fid);
 
-clearvars -except LY
+clearvars
 %%%% JET %%%%
+LY=2020;
 JETJJA(1:LY)=NaN;
 JETDJF(1:LY)=NaN;
 SS=ncread('JET/JetDiags_ukext_seasmean_1950to2020.nc','u');
