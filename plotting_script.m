@@ -1,7 +1,8 @@
 clear all
 close all
 dfiles={'AMOC','NAO','JET-JJA','JET-DJF','SPG-OHC','ARCTIC-SEA-ICE'};
-vname={'AMOC [Sv]','NAO (DJFM)','Atlantic jet latitude (JJA) [°N]','Atlantic jet speed (DJF) [m/s]','Atlantic sub-polar gyre OHC [ZJ]','Arctic autumn sea ice volume [km^3]'};
+vname={'AMOC [Sv]','NAO (DJFM)','Atlantic jet latitude (JJA) [°N]','Atlantic jet speed (DJF) [m/s]','Atlantic sub-polar gyre OHC [ZJ]','Atlantic Arctic autumn sea ice volume [km^3]'};
+
 figure
 for dd=1:length(dfiles)
     D=load(sprintf('DATA/%s.txt',dfiles{dd}));
@@ -24,7 +25,7 @@ for dd=1:length(dfiles)
     TT=title(vname{dd},'FontWeight','normal');
     set(gca,'FontSize',14);
     set(TT,'FontSize',20);
-set(gcf,'PaperPosition',[0 0 25 8]);
-print('-dpng','-r300',sprintf('ACSIS-indicators-%s.png',dfiles{dd}));
+    set(gcf,'PaperPosition',[0 0 25 8]);
+    print('-dpng','-r300',sprintf('ACSIS-indicators-%s.png',dfiles{dd}));
 end
 
