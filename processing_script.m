@@ -11,6 +11,7 @@ for yy=SI(1,1):SI(end,1)
     fprintf(fid,'%.2f %.3f\n',yy,SI(F,2));
 end
 
+clearvars -except LY
 %%%% AMOC %%%%
 AMOC(1:LY)=NaN;
 MOC_RAW=load('AMOC/moc_transports.ascii.txt');
@@ -87,6 +88,19 @@ fclose(fid);
 fid=fopen('DATA/JET-DJF.txt','w+');
 for yy=1950:LY
    fprintf(fid,'%d %.3f\n',yy,JETDJF(yy));
+end
+fclose(fid);
+
+clearvars -except LY
+%%%% OZONE %%%%
+LY=2018;
+first_year=2005;
+OZONE(1:LY)=NaN;
+OZONE_RAW=load('OZONE/Raw_ozone_data_0-60N_100W-30E.txt');
+fid=fopen('DATA/OZONE.txt','w+');
+for yy=first_year:LY
+    O(yy)=mean(OZONE_RAW((yy-first_year)*12+[1:12]));
+    fprintf(fid,'%d %.3f\n',yy,O(yy));
 end
 fclose(fid);
 
