@@ -69,16 +69,16 @@ fclose(fid);
 
 clearvars
 %%%% JET %%%%
-LY=2020;
+LY=2021;
 JETJJA(1:LY)=NaN;
 JETDJF(1:LY)=NaN;
-SS=ncread('JET/JetDiags_ukext_seasmean_1950to2020.nc','u');
+SS=ncread('JET/JetDiags_ukext_seasmean_1950to2021.nc','u');
 SS=SS(3,:); % select row
-LL=ncread(sprintf('JET/JetDiags_0to20W_centroidfromseasmean_1950to2020.nc'),'cen_lats_eastward_wind_');
+LL=ncread(sprintf('JET/JetDiags_0to20W_centroidfromseasmean_1950to2021.nc'),'cen_lats_eastward_wind_');
 LL=LL(3,:); % select row
 
-JETDJF(1951:2020)=SS(4:4:end);
-JETJJA(1950:2020)=LL(2:4:end);
+JETDJF(1951:LY)=SS(4:4:end);
+JETJJA(1950:LY)=LL(2:4:end);
 
 fid=fopen('DATA/JET-JJA.txt','w+');
 for yy=1950:LY
