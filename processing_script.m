@@ -14,7 +14,7 @@ end
 clearvars -except LY
 %%%% AMOC %%%%
 AMOC(1:LY)=NaN;
-MOC_RAW=load('AMOC/moc_transports.ascii.txt');
+MOC_RAW=load('AMOC/moc_transports.ascii');
 % order: JD YY MM DD HR t_therm10 t_aiw10 t_ud10 t_ld10 t_bw10 t_gs10 t_ek10 t_umo10 moc_mar_hc10
 first_year=min(MOC_RAW(:,2));
 last_year=max(MOC_RAW(:,2));
@@ -25,7 +25,7 @@ fid=fopen('DATA/AMOC.txt','w+');
 for yy=first_year:last_year
     % find values from April one year to March the following year
     F=find((MOC_RAW(:,2)==yy & MOC_RAW(:,3)>=4)|(MOC_RAW(:,2)==(yy+1) & MOC_RAW(:,3)<=3));
-    if length(F)>=728 & length(F)<=732 % twice per day, each day, allowing for one missing day
+    if length(F)>=630 % ideally twice per day, each day, allowing for missing days
      AMOC(yy)=nanmean(MOC_RAW(F,end));
      fprintf(fid,'%.2f %.3f\n',yy+0.25,AMOC(yy));
     else
