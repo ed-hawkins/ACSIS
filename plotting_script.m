@@ -9,7 +9,7 @@ for dd=1:length(dfiles)
     D=load(sprintf('DATA/%s.txt',dfiles{dd}));
     subaxis(length(dfiles),1,dd,'SV',0.05);
     plot(D(:,1),D(:,2),'LineWidth',2);
-    xlim([1949 LY]);
+    xlim([1949 LY+1]);
     TT=title(vname{dd},'FontWeight','normal');
     set(gca,'FontSize',14,'TickDir','out');
     set(TT,'FontSize',20);
@@ -22,7 +22,7 @@ for dd=1:length(dfiles)
     figure
     D=load(sprintf('DATA/%s.txt',dfiles{dd}));
     plot(D(:,1),D(:,2),'LineWidth',2);
-    xlim([1949 LY]);
+    xlim([1949 LY+1]);
     TT=title(vname{dd},'FontWeight','normal');
     set(gca,'FontSize',14,'TickDir','out');
     set(TT,'FontSize',20);

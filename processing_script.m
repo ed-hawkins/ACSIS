@@ -1,6 +1,6 @@
 clear all
 close all
-LY=2022;
+LY=2024;
 
 %%% SEA ICE %%%
 SICE(1:LY)=NaN;
